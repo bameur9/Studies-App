@@ -1,0 +1,30 @@
+<!-- Button trigger modal -->
+<p class="text-primary  select float-right" (click)="openVerticallyCentered(content)" *ngIf="!matExist"><i class="bi bi-plus-lg"></i> Neues Material</p>
+
+<div class="clearfix">
+    <a class="btn float-right add-btn bg-primary animate__an imated animate__heartBeat" (click)="openVerticallyCentered(content)" *ngIf="!matExist"><i class="bi bi-plus-lg"></i></a>
+</div>
+
+<a *ngIf="matExist" (click)="openVerticallyCentered(content)"><i class="bi bi-pencil-fill text-black "></i></a>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header btn-success">
+        <h4 class="modal-title text-center text-white-50" id="modal-basic-title">Vorlesung {{textAction}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true"></span>
+  </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="materialForm">
+
+            <div class="modal-body">
+                <input class="w-100" placeholder="vorlesung" type="text" name="fname" formControlName="subject" [(ngModel)]="materialTemplate" autofocus>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="materialForm.invalid" data-bs-dismiss="modal">Hinzufügen</button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>

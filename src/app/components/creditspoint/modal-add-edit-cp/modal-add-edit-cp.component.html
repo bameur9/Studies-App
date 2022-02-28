@@ -1,0 +1,44 @@
+<p class="text-primary  select float-right" (click)="openVerticallyCentered(content)" *ngIf="!dataExist"><i class="bi bi-plus-lg"></i> Neues Modul</p>
+
+<a class="add-btn bg-primary shadow animate__an imated animate__heartBeat" (click)="openVerticallyCentered(content)" *ngIf="!dataExist"><i class="bi bi-plus-lg"></i></a>
+
+
+<a *ngIf="dataExist" (click)="openVerticallyCentered(content)"><i class="bi bi-pencil-fill text-black"></i></a>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header btn-warning">
+        <h4 class="modal-title text-center text-white-50" id="modal-basic-title">Modul {{textAction}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true"></span>
+</button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="creditpointForm">
+
+            <div class="modal-body">
+                <input class="w-100" placeholder="modul" type="text" name="fname" formControlName="subject" [(ngModel)]="subjectTemplate" autofocus>
+
+
+                <input class="w-10 mt-3" placeholder="note" type="number" name="fname" min="1" max="5" [(ngModel)]="noteTemplate" formControlName="note" autofocus>
+                <p class="text-danger" *ngIf="noteTemplate > 5 ">Note invalide<br>Note muss zwischen [0,5]</p>
+                <p class="text-success" *ngIf="noteTemplate >=1 && noteTemplate
+                  <=1.59">sehr gut!</p>
+                <p class="text-success" *ngIf="noteTemplate >=1.6 && noteTemplate
+                <=2.59">gut!</p>
+                <p class="text-success" *ngIf="noteTemplate >=3 && noteTemplate
+                  <=3.59">befriedigend!</p>
+                <p class="text-success" *ngIf="noteTemplate >=4 && noteTemplate
+                    <=4.09">ausreichend!</p>
+                <p class="text-warning" *ngIf="noteTemplate >=4.1 && noteTemplate
+                      <=5">nicht ausreichend!</p>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="creditpointForm.invalid" data-bs-dismiss="modal">Save</button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>

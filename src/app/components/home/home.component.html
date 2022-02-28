@@ -1,0 +1,25 @@
+<div class="container d-flex justify-content-center">
+    <div class="row row-cols-2">
+        <div class="col d-flex justify-content-center" #child>
+            <button id="home" type="button" class="btn btn-primary btn-lg btn-block breakAll narrow" (click)="goToVorlesung()"><i class="bi bi-calendar3"></i> <br/>Vorlesungsplan</button>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-dark btn-block
+            " (click)="goToTodo()"><i class="bi bi-list-check"></i><br/>To Do Liste</button>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-success" (click)="goTodMaterial()"><i class="bi bi-folder"></i><br/>Material zur Vorlesung</button>
+        </div>
+        <!--animate__animated animate__bounceInUp-->
+
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" (click)="goToTermin()"><i class="bi bi-book"></i><br>Termin</button>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-warning  btn-block text-white" (click)="goToCp()"><i class="bi bi-mortarboard"></i><br>Credit Point</button>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-info text-white " (click)="goToProjekt()"><i class="bi bi-journal-text"></i> <br/>Projekt</button>
+        </div>
+    </div>
+</div>

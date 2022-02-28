@@ -1,0 +1,20 @@
+<div class="">
+    <div class="bg-danger">
+        <h3 class="text-center p-3 text-white">Termin</h3>
+    </div>
+
+</div>
+
+<button aria-label="b" class="btn btn-sm btn-outline-primary mr-2 mb-3" (click)="gotoHome()"><i class="bi bi-arrow-return-left"></i></button>
+
+<form>
+    <div class="form-group w-70">
+        <div class="input-group">
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
+            <div class="btn input-group-append">
+                <a class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></a>
+            </div>
+            <button class="btn btn-primary ml-3" [disabled]="!model2 ? 'disabled': null" (click)="addDate(model2)" type="submit">Hinzufügen</button>
+        </div>
+    </div>
+</form>

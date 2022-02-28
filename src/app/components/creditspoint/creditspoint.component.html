@@ -1,0 +1,60 @@
+<div class="btn-warning">
+    <h3 class="text-center p-3 text-white">Credit point</h3>
+</div>
+
+
+<button aria-label="b" class="btn btn-sm btn-outline-primary mr-2 mb-3" (click)="gotoHome()"><i class="bi bi-arrow-return-left"></i></button>
+
+<app-modal-add-edit-cp></app-modal-add-edit-cp>
+
+<nav class="navbar">
+    <input type="text" name="subject" class="form-control" [(ngModel)]="subject" (ngModelChange)="Search()" placeholder="Enter first Modul to search">
+</nav>
+
+<div class="mx-auto bg-white rounded shadow">
+    <!--Table-->
+    <div class="table-responsive table-responsive-sm tableFixHead">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Modul</th>
+                <th>Note</th>
+                <th>CP</th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            <tbody class="body">
+                <tr *ngFor="let cp of creditpoints | paginate: {itemsPerPage:5, currentPage:p};">
+                    <td>{{cp.id}} . {{cp.subject}}</td>
+                    <td>{{cp.note}}</td>
+                    <td>{{cp.note
+                        < 5 ? cp.cp : "NB" }}</td>
+                            <td>
+                                <app-modal-add-edit-cp [creditpoint]="cp">
+                                </app-modal-add-edit-cp> | <a class="deleteBtn m-1 text-black" (click)="openForRemove(content,cp)"><i class="bi bi-trash-fill icon"></i></a>
+                            </td>
+                </tr>
+
+            </tbody>
+
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header btn-warning text-white-50">
+        <h4 class="modal-title text-center" id="modal-basic-title">Bestätigung</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true"></span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <p>Wollen Sie das Modul wirklich löschen?</p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="d('Cross click')">Nein</button>
+        <button type="button" class="btn btn btn-danger" (click)="c('yes')">Ja</button>
+    </div>
+</ng-template>

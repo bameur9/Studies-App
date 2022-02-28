@@ -1,0 +1,49 @@
+<div>
+    <div class="bg-primary">
+        <h3 class="text-center p-3 text-white">Vorlesungsplan</h3>
+    </div>
+
+    <button aria-label="b" class="btn btn-sm btn-outline-primary mr-2 mb-3" (click)="gotoHome()"><i class="bi bi-arrow-return-left"></i></button>
+
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <a ngbNavLink>Planer</a>
+            <ng-template ngbNavContent>
+                <div class="mx-auto bg-white rounded shadow">
+                    <ejs-schedule class="mb-2" width='100%' height='500px' id="schedule" [selectedDate]="selectedDate" [currentView]="currentView" (actionBegin)="onAction($event)">
+                        <e-views>
+                            <e-view option="Week" [showWeekend]="showWeekend" startHour="08:00" endHour="18:00"></e-view>
+                            <e-view option="Month"></e-view>
+                        </e-views>
+                    </ejs-schedule>
+                </div>
+            </ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink>Hilfe</a>
+            <ng-template ngbNavContent>
+                <div class="mt-2">
+                    <p class="font-weight-bold">- Wie lege ich einen Vorlesungsplan an ? <br> <span class="font-weight-light">
+                      (zb. Math am Dienstag um 09:45 bis 11h15)
+                    </span></p>
+                    <p>1. klicken Sie auf das Symbol (<b>+</b>) oder klicken Sie auf das Feld der Uhrzeit des Unterricshtsbeginns.</p>
+                    <img [src]=bild1 class="img-fluid" alt="Responsive image">
+
+                    <p class="mt-2">2. Das untere angezeigte Bild öffnet sich und Sie müssen Ihre Daten eingeben.<br>
+                        <span class="font-italic"><b>Hinweis:</b> Es ist sehr wichtig, dass Sie das Feld <b>repeat</b> markieren, wenn Sie möchten, dass sich Ihr Programm jede Woche wiederholt.
+                      folgen Sie der folgenden Anweisung: <br/>
+                      <b>Markieren Sie das Kästchen "repeat" -> wählen Sie "Weekly" -> "save".</b> </span></p>
+                    <img [src]=bild2 class="img-fluid shadow" alt="Responsive image">
+
+
+
+                </div>
+
+            </ng-template>
+        </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav"></div>
+
+
+</div>

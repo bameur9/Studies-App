@@ -1,0 +1,48 @@
+<div class="">
+    <div class="btn-dark">
+        <h3 class="text-center p-3 text-white">To do Liste</h3>
+    </div>
+</div>
+
+<button aria-label="b" class="btn btn-sm btn-outline-primary mr-2 mb-3" (click)="gotoHome()"><i class="bi bi-arrow-return-left"></i></button>
+
+<app-modal-add-edit-todo></app-modal-add-edit-todo>
+
+<nav class="navbar">
+    <input type="text" name="subject" class="form-control" [(ngModel)]="subject" (ngModelChange)="Search()" placeholder="Enter first Title to search">
+</nav>
+
+<ul class="list-group" #li *ngFor="let todo of todos; let i = index">
+    <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center mt-2">
+        <span (click)="goToList(todo.id, todo.name)">
+          <i class="bi bi-list-task mr-2 text-muted"></i>
+          {{todo.name}}
+          <span class="badge btn-info rounded-pill mr-15">
+            {{(todo.liste?.length)? itemLength : 0 }}
+          </span>
+        </span>
+
+        <span class="float-right">
+          <button type="button" class="btn-close" aria-label="Close" (click)="openForRemove(content,i)"></button>
+          <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header btn-dark text-white-50">
+                <h4 class="modal-title text-center" id="modal-basic-title">Bestätigung</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true"></span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <p>Wollen Sie ,,{{todo.name}}´´ wirklich löschen?</p>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="d('Cross click')">Nein</button>
+            <button type="button" class="btn btn btn-danger" (click)="c('yes')">Ja</button>
+        </div>
+        </ng-template>
+
+
+        </span>
+
+    </li>
+</ul>

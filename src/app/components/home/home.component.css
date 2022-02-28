@@ -1,0 +1,43 @@
+.col {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 180px;
+    height: 130px;
+    box-shadow: 10px 20px 15px silver;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.narrow {
+    padding: 5px;
+    border: 1px solid;
+}
+
+.breakAll {
+    word-break: break-all;
+}
+
+@media screen and (min-width: 985px) {
+    button {
+        min-width: 380px;
+        min-height: 130px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    button {
+        max-width: 180px;
+        max-height: 120px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    button {
+        max-width: 180px;
+        max-height: 120px;
+        font-size: 13px;
+    }
+}

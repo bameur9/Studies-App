@@ -1,0 +1,92 @@
+<div class="mb-3 btn-dark text-white">
+    <div class="p-3">
+        <span class="fw-bold">
+          <a [routerLink]="['/home/todo']" style="color: #fff;"> <i class="bi bi-arrow-left"></i> </a>
+     <span class=" ml-3">{{name}}</span>
+        </span>
+        <div class="float-right">
+            <p>
+                <span class="mr-3">
+    <i class="bi bi-sort-alpha-down"></i>
+    </span>
+                <span>
+        <i class="bi bi-three-dots-vertical"></i>
+    </span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+    <div class="d-block w-20">
+
+        <p>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    <i class="bi bi-plus-lg"></i> Eine neue Aufgabe hinzufügen
+                </button>
+        </p>
+    </div>
+
+
+
+    <div>
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+
+            <form (ngSubmit)="addNewList()" [formGroup]="todoFormList" class="d-flex justify-content-star">
+                <div class="form-group">
+                    <input class="todo rounded" placeholder="Aufgabe..." type="text" name="title" formControlName="title" [(ngModel)]="todoListTemplate">
+                </div>
+
+
+                <div class="order-first mt-2">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="todoListSelect" formControlName="stufe">
+      <option [ngValue]="priorutaet[1]">{{priorutaet[1]}}</option>
+      <option  [ngValue]="priorutaet[2]">{{priorutaet[2]}}</option>
+      <option  [ngValue]="priorutaet[3]">{{priorutaet[3]}}</option>
+
+    </select>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary add" [disabled]="todoFormList.invalid">Hinzufügen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-3" *ngFor="let liste of listen?.liste; let i = index">
+
+        <div class="card-header ">
+            <div class=" text-right">
+                <span *ngIf="priorutaet[1] ==liste.stufe " class="badge badge-primary badge-pill btn-success">
+            <i class="bi bi-star-fill"></i>
+          </span>
+                <span *ngIf="priorutaet[2] ==liste.stufe " class="badge badge-primary badge-pill btn-warning">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </span>
+                <span *ngIf="priorutaet[3] ==liste.stufe " class="badge badge-primary badge-pill btn-danger">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </span>
+            </div>
+        </div>
+
+        <div class="card-body p-3" class="d-flex justify-content-between">
+            <div class="mb-3 ml-1 form-check">
+                <input class="form-check-input mr-1" type="checkbox" value="" (click)="status(i)" aria-label="..." [checked]="liste.status">
+
+                <label [ngClass]="['form-check-label',liste.status?'streichen': '' ]" style="max-width: 18rem;" for="exampleCheck1">{{liste.title}}</label>
+            </div>
+        </div>
+
+        <footer class="blockquote-footer">
+            <small>
+            Date: {{liste.date| date: 'short' }}
+          </small>
+        </footer>
+    </div>
+
+
+</div>

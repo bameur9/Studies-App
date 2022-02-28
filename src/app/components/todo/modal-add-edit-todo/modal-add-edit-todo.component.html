@@ -1,0 +1,24 @@
+<p class="text-primary  select float-right liste" (click)="openVerticallyCentered(content)"><i class="bi bi-plus-lg"></i>Neuer Titel </p>
+
+<a class="btn add-btn bg-primary animate__an imated animate__heartBeat" (click)="openVerticallyCentered(content)"><i class="bi bi-plus-lg d-flex"></i></a>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header btn-dark">
+        <h4 class="modal-title text-center text-white-50" id="modal-basic-title">Neuer Titel hinzufügen</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+  <span aria-hidden="true"></span>
+</button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="todoForm">
+            <div class="form-group">
+                <input class="w-100" placeholder="title..." type="text" name="fname" formControlName="name" [(ngModel)]="todoTemplate">
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="todoForm.invalid" data-bs-dismiss="modal">save</button>
+            </div>
+        </form>
+
+    </div>
+</ng-template>

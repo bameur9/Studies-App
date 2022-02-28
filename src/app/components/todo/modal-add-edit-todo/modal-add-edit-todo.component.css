@@ -1,0 +1,31 @@
+.add-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    bottom: 60px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-btn:hover {
+    background: rgb(68, 87, 192);
+}
+
+input {
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid #0000005e;
+    font-size: 16px;
+}
+
+.liste {
+    cursor: pointer;
+}

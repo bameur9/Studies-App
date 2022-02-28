@@ -1,0 +1,86 @@
+<div>
+
+    <div class="btn-success">
+        <h3 class="text-center p-3 text-white">Material zur Vorlesung</h3>
+    </div>
+
+
+    <button aria-label="b" class="btn btn-sm btn-outline-primary mr-2 mb-3" (click)="gotoHome()"><i class="bi bi-arrow-return-left"></i></button>
+    <app-modal-add-edit-material (materialItem)="save($event)"></app-modal-add-edit-material>
+
+    <div class="overflow-auto fileInput mx-auto rounded shadow">
+        <ion-row *ngFor="let m of materialien; let i = index">
+
+            <div class="box">
+                <div class="toggle clearfix">
+                    <a class="btn" (click)="toggleSection(i)" [attr.aria-expanded]="m.toggle" aria-controls="collapseExample">
+                        <i class="bi bi-chevron-down" *ngIf="m.toggle"></i>
+                        <i class="bi bi-chevron-up" *ngIf="!m.toggle"></i> {{m.subject}} <span class="badge badge-primary badge-pill">{{m?.files?.length}}</span>
+                    </a>
+
+                    <div class="float-right p-2">
+                        <p>
+                            <app-modal-add-edit-material [material]="m" (materialItem)="save($event)"></app-modal-add-edit-material>
+                            |
+                            <a class="deleteBtn" (click)="openForRemove(content,m)"><i class="bi bi-trash-fill icon"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+                <div #collapse="ngbCollapse" [(ngbCollapse)]="!m.toggle">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Hoch-und herunterladen von Materialien</p>
+                            <div *ngIf="fileStatus.status==='progress'">
+
+                                <div class="progress">
+                                    <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-label="Aria Name">
+                                        {{ fileStatus.requestType }} {{ fileStatus.percent }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group col-7">
+                                        <div>
+                                            <input type="file" name="files" (change)="onUploadFiles($event.target.files, i,m.id)" multiple class="form-control update" title="uploadedfile" />
+                                        </div>
+                                        <div *ngIf="m.files?.length > 0" class="js-upload-finished">
+                                            <div *ngFor="let filename of m?.files; let indexFile = index" class="list-group  download">
+
+                                                <a (click)="onDownloadFiles(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+                                            {{filename}}
+                                            <a class="alert-success m-2">Download</a> <a (click)="removeClick(i, indexFile)" class="float-right"><i class="bi bi-x-lg"></i></a>
+                                                </a>
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header btn-success text-white-50">
+                    <h4 class="modal-title text-center" id="modal-basic-title">Bestätigung</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true"></span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>Wollen Sie die Vorlesung wirklich löschen?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="d('Cross click')">Nein</button>
+                    <button type="button" class="btn btn btn-danger" (click)="c('yes')">Ja</button>
+                </div>
+            </ng-template>
+        </ion-row>
+    </div>
+
+</div>

@@ -1,0 +1,44 @@
+@media screen and (max-width: 375px) {
+    h2 {
+        font-size: 20px;
+    }
+    .table {
+        max-height: 200px;
+    }
+    th,
+    td {
+        font-size: 12px;
+    }
+    .tableFixHead {
+        overflow: auto;
+        max-height: 320px;
+    }
+}
+
+.tableFixHead {
+    overflow: auto;
+    height: auto;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+
+/* Just common table stuff. Really. */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px 16px;
+}
+
+th {
+    background: #eee;
+}
